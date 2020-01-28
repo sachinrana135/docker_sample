@@ -86,6 +86,7 @@ pipeline
 	    {
 		    steps
 		    {
+			bat 'docker login -u "sachinrana01" -p "Sachin@123" docker.io'       
 		    	bat returnStdout: true, script: "docker push sachinrana01/java_sample_app:${BUILD_NUMBER}"
 		    }
 	    }
