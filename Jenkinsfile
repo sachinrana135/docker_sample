@@ -35,14 +35,14 @@ pipeline
 		{
 			steps
 			{
-				sh "mvn install"
+				bat "mvn install"
 			}
 		}
 		stage ('Unit Testing')
 		{
 			steps
 			{
-				sh "mvn test"
+				bat "mvn test"
 			}
 		}
 		stage ('Sonar Analysis')
@@ -51,7 +51,7 @@ pipeline
 			{
 				withSonarQubeEnv("Test_Sonar") 
 				{
-					sh "mvn sonar:sonar"
+					bat "mvn sonar:sonar"
 				}
 			}
 		}
@@ -79,21 +79,21 @@ pipeline
 		{
 			steps
 			{
-				sh returnStdout: true, script: '/bin/docker build -t dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER} -f Dockerfile .'
+				bat returnStdout: true, script: '/bin/docker build -t dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER} -f Dockerfile .'
 			}
 		}
 		stage ('Push to DTR')
 	    {
 		    steps
 		    {
-		    	sh returnStdout: true, script: '/bin/docker push dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
+		    	bat returnStdout: true, script: '/bin/docker push dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
 		    }
 	    }
         stage ('Stop Running container')
     	{
 	        steps
 	        {
-	            sh '''
+	            bat '''
                     ContainerID=$(docker ps | grep 7016 | cut -d " " -f 1)
                     if [  $ContainerID ]
                     then
@@ -108,7 +108,7 @@ pipeline
 		{
 		    steps
 		    {
-		        sh 'docker run --name devopssampleapplication_sachinrana -d -p 7016:8080 dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
+		        bat 'docker run --name devopssampleapplication_sachinrana -d -p 7016:8080 dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
 		    }
 		}
 	}
