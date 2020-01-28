@@ -62,8 +62,8 @@ pipeline
 				rtMavenDeployer (
                     id: 'deployer',
                     serverId: '123456789@artifactory',
-                    releaseRepo: 'sachinrana01',
-                    snapshotRepo: 'sachinrana01'
+                    releaseRepo: 'sachinrana',
+                    snapshotRepo: 'sachinrana'
                 )
                 rtMavenRun (
                     pom: 'pom.xml',
