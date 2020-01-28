@@ -90,7 +90,7 @@ pipeline
 		    	bat returnStdout: true, script: "docker push sachinrana01/java_sample_app:${BUILD_NUMBER}"
 		    }
 	    }
-        stage ('Stop Running container')
+       /* stage ('Stop Running container')
     	{
 	        steps
 	        {
@@ -101,6 +101,7 @@ pipeline
 					   ''' 
 	        }
 	    }
+	    */
 
 		stage ('Docker deployment')
 		{
