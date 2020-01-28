@@ -94,14 +94,11 @@ pipeline
     	{
 	        steps
 	        {
-	            bat '''
-                    ContainerID=$(docker ps | grep 7016 | cut -d " " -f 1)
-                    if [  $ContainerID ]
-                    then
-                        docker stop $ContainerID
-                        docker rm -f $ContainerID
-                    fi
-                '''
+	            bat '''FOR /F "tokens=*" %%g IN ('docker ps -a -q --filter "expose=8080/tcp"') do (SET ContainerID=%%g)
+                    if not "%ContainerID%"==" " (docker stop %ContainerID%
+   					docker rm -f %ContainerID%
+					   )
+					   ''' 
 	        }
 	    }
 
