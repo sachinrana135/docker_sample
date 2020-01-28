@@ -79,14 +79,14 @@ pipeline
 		{
 			steps
 			{
-				bat returnStdout: true, script: 'docker build -t sachinrana01/java_sample_app:${BUILD_NUMBER} -f Dockerfile .'
+				bat returnStdout: true, script: "docker build -t sachinrana01/java_sample_app:${BUILD_NUMBER} -f Dockerfile ."
 			}
 		}
-		stage ('Push to DTR')
+		stage ('Push to Dockerhub')
 	    {
 		    steps
 		    {
-		    	bat returnStdout: true, script: 'docker push sachinrana01/java_sample_app:${BUILD_NUMBER}'
+		    	bat returnStdout: true, script: "docker push sachinrana01/java_sample_app:${BUILD_NUMBER}"
 		    }
 	    }
         stage ('Stop Running container')
