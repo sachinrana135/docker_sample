@@ -62,8 +62,8 @@ pipeline
 				rtMavenDeployer (
                     id: 'deployer',
                     serverId: '123456789@artifactory',
-                    releaseRepo: 'sachinrana',
-                    snapshotRepo: 'sachinrana'
+                    releaseRepo: 'sachinrana01',
+                    snapshotRepo: 'sachinrana01'
                 )
                 rtMavenRun (
                     pom: 'pom.xml',
@@ -79,14 +79,14 @@ pipeline
 		{
 			steps
 			{
-				bat returnStdout: true, script: '/bin/docker build -t dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER} -f Dockerfile .'
+				bat returnStdout: true, script: '/bin/docker build -t dtr.nagarro.com:443/devopssampleapplication_sachinrana01:${BUILD_NUMBER} -f Dockerfile .'
 			}
 		}
 		stage ('Push to DTR')
 	    {
 		    steps
 		    {
-		    	bat returnStdout: true, script: '/bin/docker push dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
+		    	bat returnStdout: true, script: '/bin/docker push dtr.nagarro.com:443/devopssampleapplication_sachinrana01:${BUILD_NUMBER}'
 		    }
 	    }
         stage ('Stop Running container')
@@ -108,7 +108,7 @@ pipeline
 		{
 		    steps
 		    {
-		        bat 'docker run --name devopssampleapplication_sachinrana -d -p 7016:8080 dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
+		        bat 'docker run --name devopssampleapplication_sachinrana01 -d -p 7016:8080 dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}'
 		    }
 		}
 	}
