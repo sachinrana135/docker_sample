@@ -107,7 +107,7 @@ pipeline
 		{
 		    steps
 		    {
-		        bat "docker run --name devopssampleapplication_sachinrana01 -d -p 7016:8080 dtr.nagarro.com:443/devopssampleapplication_sachinrana:${BUILD_NUMBER}"
+		        bat "docker run --name devopssampleapplication_sachinrana01 -d -p 7016:8080 sachinrana01/java_sample_app:${BUILD_NUMBER}"
 		    }
 		}
 	}
